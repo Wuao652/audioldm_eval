@@ -1,4 +1,7 @@
 import torch
+# Add this line to avoid error:
+# "Too many open files. Communication with the workers is no longer possible."
+torch.multiprocessing.set_sharing_strategy("file_system")
 from audioldm_eval import EvaluationHelper, EvaluationHelperParallel
 import torch.multiprocessing as mp
 
@@ -18,11 +21,11 @@ metrics = evaluator.main(
     target_audio_path,
 )
 
-## Multiple GPUs
+# ## Multiple GPUs
 
-if __name__ == '__main__':    
-    evaluator = EvaluationHelperParallel(16000, 2)
-    metrics = evaluator.main(
-        generation_result_path,
-        target_audio_path,
-    )
+# if __name__ == '__main__':    
+#     evaluator = EvaluationHelperParallel(16000, 2)
+#     metrics = evaluator.main(
+#         generation_result_path,
+#         target_audio_path,
+#     )

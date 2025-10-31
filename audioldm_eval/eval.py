@@ -102,7 +102,7 @@ class EvaluationHelper:
             generate_files_path, groundtruth_path, limit_num=limit_num
         )
 
-        metrics = self.calculate_metrics(generate_files_path, groundtruth_path, same_name, limit_num) # recalculate = True
+        metrics = self.calculate_metrics(generate_files_path, groundtruth_path, same_name, limit_num, recalculate=True) # recalculate = True
 
         return metrics
 
@@ -200,7 +200,8 @@ class EvaluationHelper:
         # Generation, target
         torch.manual_seed(0)
 
-        num_workers = 6
+        # change the num_workers to 8
+        num_workers = 8
 
         outputloader = DataLoader(
             WaveDataset(
@@ -233,7 +234,8 @@ class EvaluationHelper:
         if(recalculate): 
             print("Calculate FAD score from scratch")
         fad_score = self.frechet.score(generate_files_path, groundtruth_path, limit_num=limit_num, recalculate=recalculate)
-        out.update(fad_score)
+        # out.update(fad_score)
+        out.update({"frechet_audio_distance": fad_score})
         print("FAD: %s" % fad_score)
         ######################################################################################################################
         

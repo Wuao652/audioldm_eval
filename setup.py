@@ -43,7 +43,7 @@ REQUIRED = [
     "absl-py",
     "scipy",
     "tqdm",
-    "ssr_eval",
+#   "ssr_eval",
     "librosa",
 ]
 

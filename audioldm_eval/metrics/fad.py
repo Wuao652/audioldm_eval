@@ -157,6 +157,7 @@ class FrechetAudioDistance:
         # background_dir: generated samples
         # eval_dir: groundtruth samples
         try:
+            print("==========  sucessfully enter FAD score function  ==========")
             fad_target_folder_cache = eval_dir + "_fad_feature_cache.npy"
             fad_generated_folder_cache = background_dir + "_fad_feature_cache.npy"
 
