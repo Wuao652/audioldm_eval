@@ -234,8 +234,8 @@ class EvaluationHelper:
         if(recalculate): 
             print("Calculate FAD score from scratch")
         fad_score = self.frechet.score(generate_files_path, groundtruth_path, limit_num=limit_num, recalculate=recalculate)
-        # out.update(fad_score)
-        out.update({"frechet_audio_distance": fad_score})
+        out.update(fad_score)
+        # out.update({"frechet_audio_distance": fad_score})
         print("FAD: %s" % fad_score)
         ######################################################################################################################
         
@@ -306,18 +306,18 @@ class EvaluationHelper:
             metric_psnr_ssim = self.calculate_psnr_ssim(pairedloader, same_name=same_name)
             out.update(metric_psnr_ssim)
 
-        # metric_kid = calculate_kid(
-        #     featuresdict_1,
-        #     featuresdict_2,
-        #     feat_layer_name="2048",
-        #     subsets=100,
-        #     subset_size=1000,
-        #     degree=3,
-        #     gamma=None,
-        #     coef0=1,
-        #     rng_seed=2020,
-        # )
-        # out.update(metric_kid)
+        metric_kid = calculate_kid(
+            featuresdict_1,
+            featuresdict_2,
+            feat_layer_name="2048",
+            subsets=100,
+            subset_size=1000,
+            degree=3,
+            gamma=None,
+            coef0=1,
+            rng_seed=2020,
+        )
+        out.update(metric_kid)
 
         print("\n".join((f"{k}: {v:.7f}" for k, v in out.items())))
         print("\n")

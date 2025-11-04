@@ -198,7 +198,7 @@ class FrechetAudioDistance:
                 mu_background, sigma_background, mu_eval, sigma_eval
             )
 
-            return {"frechet_audio_distance": fad_score}
+            return {"frechet_audio_distance": float(fad_score)}
 
         except Exception as e:
             print("[Frechet Audio Distance] exception thrown, {}".format(str(e)))
