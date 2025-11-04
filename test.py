@@ -13,7 +13,7 @@ target_audio_path = "example/reference"
 
 ## Single GPU
 
-evaluator = EvaluationHelper(16000, device)
+evaluator = EvaluationHelper(16000, device, backbone="cnn14")
 
 # Perform evaluation, result will be print out and saved as json
 metrics = evaluator.main(
